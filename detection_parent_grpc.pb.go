@@ -4,7 +4,7 @@
 // - protoc             v4.25.1
 // source: detection_parent.proto
 
-package lprdetections
+package lpr_grpc
 
 import (
 	context "context"
@@ -35,7 +35,7 @@ func NewEncounterServiceClient(cc grpc.ClientConnInterface) EncounterServiceClie
 }
 
 func (c *encounterServiceClient) SubscribeToDetections(ctx context.Context, in *SubscriptionRequest, opts ...grpc.CallOption) (EncounterService_SubscribeToDetectionsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &EncounterService_ServiceDesc.Streams[0], "/lprdetections.EncounterService/SubscribeToDetections", opts...)
+	stream, err := c.cc.NewStream(ctx, &EncounterService_ServiceDesc.Streams[0], "/lprgrpc.EncounterService/SubscribeToDetections", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -120,7 +120,7 @@ func (x *encounterServiceSubscribeToDetectionsServer) Send(m *DetectionEncounter
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var EncounterService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "lprdetections.EncounterService",
+	ServiceName: "lprgrpc.EncounterService",
 	HandlerType: (*EncounterServiceServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{

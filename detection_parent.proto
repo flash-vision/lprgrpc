@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package lprdetections;
+package lprgrpc;
 
-option go_package = "./lprdetections";
+option go_package = "github.com/flash-vision/lpr-grpc";
 
 message Detection {
     string uid = 1;
