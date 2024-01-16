@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package lprdetections;
+
+option go_package = "./lprdetections";
+
+message Detection {
+    string uid = 1;
+    string sensor_name = 2;
+    string _type = 3;
+    double ts = 4;
+    repeated string label = 5;
+    repeated double confidence = 6;
+}
+
+message Bounding {
+    string detection_uid = 1;
+    string bounding_type = 2;
+    repeated double _values = 3; // Assuming this is a list of doubles
+}
+
+message ImageAttribute {
+    string _name = 1;
+    string _value = 2; // Assuming _value is a string, change type if necessary
+}
+
+message DetectionImage {
+    repeated string detection_images = 1;
+    repeated ImageAttribute image_attributes = 2;
+}
+
+message PayloadData {
+    string _name = 1;
+    string _value = 2; // Assuming _value is a string, change type if necessary
+}
+
+message DetectionEncounter {
+    string schema_version = 1;
+    string message_uid = 2;
+    string message_parent_uid = 3;
+    string robot_uid = 4;
+    double event_ts = 5;
+    string utc_offset = 6;
+    repeated Detection detections = 7;
+    repeated Bounding boundings = 8;
+    repeated DetectionImage image_data = 9;
+    repeated PayloadData payload_data = 10;
+    int32 detections_count = 11;
+    int32 image_count = 12;
+    int32 boundings_count = 13;
+    int32 image_attributes_count = 14;
+    int32 payload_attributes_count = 15;
+}
+
+service EncounterService {
+    // A server-to-client streaming RPC.
+    rpc SubscribeToDetections(SubscriptionRequest) returns (stream DetectionEncounter);
+}
+
+message SubscriptionRequest {
+    // Add any fields necessary for the subscription request
+    string client_id = 1;
+    string robot_id = 2;
+}
