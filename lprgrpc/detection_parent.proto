@@ -60,5 +60,5 @@ service EncounterService {
 message SubscriptionRequest {
     // Add any fields necessary for the subscription request
     string client_id = 1;
-    string robot_id = 2;
+    repeated string robot_uids = 2; //filters messages to the specific robot_uids
 }
