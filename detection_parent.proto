@@ -62,3 +62,8 @@ message SubscriptionRequest {
     string client_id = 1;
     repeated string robot_uids = 2; //filters messages to the specific robot_uids
 }
+
+message SubscriptionResponse {
+    bool success = 1;
+    string message = 2;
+}
