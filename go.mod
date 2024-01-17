@@ -1,4 +1,4 @@
-module github.com/flash-vision/lpr-grpc
+module github.com/flash-vision/lprgrpc
 
 go 1.21.4
 
